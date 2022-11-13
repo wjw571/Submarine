@@ -4,6 +4,8 @@ public class World {
     Battleship s;
     ObserveSubmarine os1;
     ObserveSubmarine os2;
+    ObserveSubmarine os3;
+    ObserveSubmarine os4;
     MineSubmarine ms1;
     MineSubmarine ms2;
     TorpedoSubmarine ts1;
@@ -19,112 +21,27 @@ public class World {
         //...
         //先new对象，再访问，NullPointer空指针异常
         //上面声明的数据类型，在action（）中 new对象不能再去声明一个数据变量
-        s = new Battleship();
-        s.width=60;
-        s.height=20;
-        s.x=150;
-        s.y=200;
-        s.speed=20;
-        s.life=5;
-        s.step();
-
+        s=new Battleship();
         os1=new ObserveSubmarine();
-        os1.width=20;
-        os1.height=30;
-        os1.x=160;
-        os1.y=170;
-        os1.speed=10;
-        os1.step();
-
-        os2 =new ObserveSubmarine();
-        os2.width=40;
-        os2.height=60;
-        os2.x=180;
-        os2.y=190;
-        os2.speed=5;
-        os2.step();
-
-        ms1=new MineSubmarine();
-        ms1.width=160;
-        ms1.height=40;
-        ms1.x=60;
-        ms1.y=80;
-        ms1.speed=23;
-        ms1.step();
-
-        ms2=new MineSubmarine();
-        ms2.width=50;
-        ms2.height=60;
-        ms2.x=60;
-        ms2.y=30;
-        ms2.speed=6;
-        ms2.step();
-
+        os2=new ObserveSubmarine();
+        os3=new ObserveSubmarine();
+        os4=new ObserveSubmarine();
         ts1=new TorpedoSubmarine();
-        ts1.width=60;
-        ts1.height=40;
-        ts1.x=30;
-        ts1.y=55;
-        ts1.speed=90;
-        ts1.step();
-
         ts2=new TorpedoSubmarine();
-        ts2.width=12;
-        ts2.height=13;
-        ts2.x=1;
-        ts2.y=6;
-        ts2.speed=55;
-        ts2.step();
-
-        b1=new Bomb();
-        b1.width=2;
-        b1.height=6;
-        b1.x=5;
-        b1.y=6;
-        b1.speed=44;
-        b1.step();
-
-        b2=new Bomb();
-        b2.width=5;
-        b2.height=6;
-        b2.x=5;
-        b2.y=6;
-        b2.speed=88;
-        b2.step();
-
-        m1=new Mine();
-        m1.width=55;
-        m1.height=77;
-        m1.x=66;
-        m1.y=66;
-        m1.speed=99;
-        m1.step();
-
-        m2=new Mine();
-        m2.width=55;
-        m2.height=66;
-        m2.x=8;
-        m2.y=7;
-        m2.speed=22;
-        m2.step();
-
-        t1=new Torpedo();
-        t1.width=1;
-        t1.height=9;
-        t1.x=8;
-        t1.y=9;
-        t1.speed=88;
-        t1.step();
-
-        t2=new Torpedo();
-        t2.width=44;
-        t2.height=33;
-        t2.x=3;
-        t2.y=9;
-        t2.speed=3;
-        t2.step();
-
-
+        ms1=new MineSubmarine();
+        ms2=new MineSubmarine();
+        b1=new Bomb(1,1);
+        b2=new Bomb(1,1);
+        m1=new Mine(1,2);
+        m2=new Mine(1,2);
+        t1=new Torpedo(1,5);
+        t2=new Torpedo(1,5);
+        System.out.println(s.width+","+s.height+","+s.x+","+s.y+","+s.speed+","+s.life);
+        System.out.println(os1.width+","+os1.height+","+os1.x+","+os1.y+","+os1.speed);
+        System.out.println(os2.width+","+os2.height+","+os2.x+","+os2.y+","+os2.speed);
+        System.out.println(os3.width+","+os3.height+","+os3.x+","+os3.y+","+os3.speed);
+        System.out.println(os4.width+","+os4.height+","+os4.x+","+os4.y+","+os4.speed);
+        System.out.println(t1.width+","+ t1.height+","+ t1.x+","+t1.y+","+t1.speed);
     }
 
     public static/**静态，访问不了外面的引用*/ void main/**main一定是静态的*/(String[] args) {
