@@ -1,19 +1,9 @@
 package cn.tedu.submarine;
 /** 深水炸弹*/
-public class Bomb {
-    int width;
-    int height;
-    int x;
-    int y;
-    int speed;
+public class Bomb extends SeaObject {
+    //构造方法          //例子Bomb b=new Bomb(100,200)
     Bomb(int x,int y){//y其实可以写实，这样子只是为了与其他雷一样
-        width=9;
-        height=12;
-        this.x=x;
-        this.y=y;
-        speed=3;
+       super(9,12,x,y,3);
     }
-    void step(){
-        System.out.println("深水炸弹移动");
-    }
+
 }

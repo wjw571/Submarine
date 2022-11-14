@@ -2,46 +2,39 @@ package cn.tedu.submarine;
 /** 整个游戏世界*/
 public class World {
     Battleship s;
-    ObserveSubmarine os1;
-    ObserveSubmarine os2;
-    ObserveSubmarine os3;
-    ObserveSubmarine os4;
-    MineSubmarine ms1;
-    MineSubmarine ms2;
-    TorpedoSubmarine ts1;
-    TorpedoSubmarine ts2;
-    Torpedo t1;
-    Torpedo t2;
-    Mine m1;
-    Mine m2;
-    Bomb b1;
-    Bomb b2;
+    ObserveSubmarine[] oses;
+    TorpedoSubmarine[] tses;
+    MineSubmarine[] mses;
+    Bomb[] bs;
+    Torpedo[] ts;
+    Mine[] ms;
 
     void action(){//测试代码
         //...
         //先new对象，再访问，NullPointer空指针异常
         //上面声明的数据类型，在action（）中 new对象不能再去声明一个数据变量
-        s=new Battleship();
-        os1=new ObserveSubmarine();
-        os2=new ObserveSubmarine();
-        os3=new ObserveSubmarine();
-        os4=new ObserveSubmarine();
-        ts1=new TorpedoSubmarine();
-        ts2=new TorpedoSubmarine();
-        ms1=new MineSubmarine();
-        ms2=new MineSubmarine();
-        b1=new Bomb(1,1);
-        b2=new Bomb(1,1);
-        m1=new Mine(1,2);
-        m2=new Mine(1,2);
-        t1=new Torpedo(1,5);
-        t2=new Torpedo(1,5);
-        System.out.println(s.width+","+s.height+","+s.x+","+s.y+","+s.speed+","+s.life);
-        System.out.println(os1.width+","+os1.height+","+os1.x+","+os1.y+","+os1.speed);
-        System.out.println(os2.width+","+os2.height+","+os2.x+","+os2.y+","+os2.speed);
-        System.out.println(os3.width+","+os3.height+","+os3.x+","+os3.y+","+os3.speed);
-        System.out.println(os4.width+","+os4.height+","+os4.x+","+os4.y+","+os4.speed);
-        System.out.println(t1.width+","+ t1.height+","+ t1.x+","+t1.y+","+t1.speed);
+        oses=new ObserveSubmarine[3];
+        oses[0]=new ObserveSubmarine();
+        oses[1]=new ObserveSubmarine();
+        oses[2]=new ObserveSubmarine();
+        for(int i=0;i< oses.length;i++){
+            System.out.println(oses[i].x+","+ oses[i].y);
+            oses[i].step();
+        }
+        ts=new Torpedo[2];
+        ts[0]=new Torpedo(5,6);
+        ts[1]=new Torpedo(7,6);
+        for (int i=0;i<ts.length;i++){
+            System.out.println(ts[i].x+","+ts[i].y);
+            ts[i].step();
+        }
+        ms=new Mine[2];
+        ms[0]=new Mine(8,7);
+        ms[1]=new Mine(5,5);
+        for(int i=0;i< ms.length;i++){
+            System.out.println(ms[i].x+","+ms[i].y);
+            ms[i].step();
+        }
     }
 
     public static/**静态，访问不了外面的引用*/ void main/**main一定是静态的*/(String[] args) {
