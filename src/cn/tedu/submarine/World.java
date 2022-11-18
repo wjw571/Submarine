@@ -1,45 +1,51 @@
 package cn.tedu.submarine;
+import javax.swing.JFrame;//1.
+import javax.swing.JPanel;//1.
 /** 整个游戏世界*/
-public class World {
-    Battleship s;
-    ObserveSubmarine[] oses;
-    TorpedoSubmarine[] tses;
-    MineSubmarine[] mses;
-    Bomb[] bs;
-    Torpedo[] ts;
-    Mine[] ms;
-
-    void action(){//测试代码
+public class World extends JPanel{//2.
+    //在派生类里面都是私有的数据
+    //方法公开
+    private Battleship ship=new Battleship();//战舰
+    private SeaObject[] submarines={};//潜艇数组（侦擦，鱼雷，水雷）
+    private SeaObject[] thunders={};//雷数组（鱼雷，水雷）
+    private Bomb[] bombs={};//深水炸弹数组
+        //在声明时候赋值，可以避免发生空指针异常
+    public void action(){//测试代码
         //...
         //先new对象，再访问，NullPointer空指针异常
         //上面声明的数据类型，在action（）中 new对象不能再去声明一个数据变量
-        oses=new ObserveSubmarine[3];
-        oses[0]=new ObserveSubmarine();
-        oses[1]=new ObserveSubmarine();
-        oses[2]=new ObserveSubmarine();
-        for(int i=0;i< oses.length;i++){
-            System.out.println(oses[i].x+","+ oses[i].y);
-            oses[i].step();
+        submarines=new SeaObject[5];
+        submarines[0]=new ObserveSubmarine();
+        submarines[1]=new ObserveSubmarine();
+        submarines[2]=new TorpedoSubmarine();
+        submarines[3]=new TorpedoSubmarine();
+        submarines[4]=new MineSubmarine();
+        for (int i=0;i<submarines.length;i++){
+            SeaObject s=submarines[i];//获取每个潜艇
+            System.out.println(s.x+","+s.y);
+            s.step();
         }
-        ts=new Torpedo[2];
-        ts[0]=new Torpedo(5,6);
-        ts[1]=new Torpedo(7,6);
-        for (int i=0;i<ts.length;i++){
-            System.out.println(ts[i].x+","+ts[i].y);
-            ts[i].step();
+        thunders=new SeaObject[2];
+        thunders[0]=new Torpedo(100,200);
+        thunders[1]=new Mine(300,500);
+        for (int i=0;i<thunders.length;i++){
+            SeaObject t=thunders[i];//获取每个潜艇
+            System.out.println(t.x+","+t.y);
+            t.step();
         }
-        ms=new Mine[2];
-        ms[0]=new Mine(8,7);
-        ms[1]=new Mine(5,5);
-        for(int i=0;i< ms.length;i++){
-            System.out.println(ms[i].x+","+ms[i].y);
-            ms[i].step();
-        }
+
     }
 
     public static/**静态，访问不了外面的引用*/ void main/**main一定是静态的*/(String[] args) {
-        World w=new World();//通过打表的方式访问
-        w.action();
+        JFrame frame=new JFrame();
+        World world=new World();
+        world.setFocusable(true);
+        frame.add(world);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(641+16,479+39);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        world.action();
     }
 }
 /*
@@ -50,6 +56,11 @@ public class World {
 
 2.  问：为什么要单独创建action（）方法做测试
     答：因为main是static的，在static的方法中是无法访问的那一堆引用的
+        //静态方法没有隐式this传递
+        //没有this就意味着没有对象（this表示当前对象）
+        //而实例变量a必须通过对象点访问的
+        //所以如下代码编译错误，哪怕自己加this也是报错，他不认识
+        //而静态变量不依赖对象，他是靠类名点
     所以单独创建一个非static的方法action（）来测试
     ----static的内容在面向对象第五天
 3.  问：在main中为什么要先创建World对象，再调用action（）方法？

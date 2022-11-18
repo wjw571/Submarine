@@ -3,7 +3,10 @@ import java.util.Random;
 /** 侦察潜艇*/
 public class ObserveSubmarine extends SeaObject{
 
-    ObserveSubmarine(){
+    public ObserveSubmarine(){
       super(63,19);
+    }
+    public void step(){
+        x+=speed;//x向右
     }
 }
